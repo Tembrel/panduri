@@ -11,7 +11,7 @@ Knowledge of Georgian music has been transmitted orally for
 centuries and for the most part has not been written down
 until recently, and then only through awkward and misleading
 mapping to Western musical notation that treats the ancient
-system essentially as a detuning of the Western whole tone scale.
+system essentially as a detuning of a Western scale.
 
 Gelzer has been working on an approach to notating Georgian 
 music that is free of such bias but close enough to 
