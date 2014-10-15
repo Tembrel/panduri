@@ -22,3 +22,7 @@ yet still suitable for archival and musicological purposes.
 This repository contains Lilypond templates and examples supporting
 this work in progress.
 
+To do:
+- Explain use of term "panduri".
+- Pointers to literature?
+- Brief description of how to use post-fix templates (pointer to Lilypond satb.ly example).
