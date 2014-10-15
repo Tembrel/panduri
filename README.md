@@ -1,7 +1,7 @@
 The traditional vocal and instrumental music of Georgia (*Sakartvelo*)
 employs a tuning system or systems (scales, pitch sets) 
 that are emphatically different from Western ideas of scale and tuning.
-Stuart Gelzer and others are have proposed that
+Stuart Gelzer and others have proposed that
 the Georgian "scale" can be characterized as an equal division
 of the perfect fifth into four "whole steps", much as the modern
 Western chromatic scale can be characterized as an equal division of
