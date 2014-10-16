@@ -35,9 +35,9 @@
 % These are currently *all* required.
 %
 
-showGamut = ##t
-
 unbarred = ##t
+
+showGamut = ##t
 
 middleCPosition = #(+ 6) % 1st leger line above staff
 
