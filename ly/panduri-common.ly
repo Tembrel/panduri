@@ -7,7 +7,7 @@
 % using that clef.
 %
 % Also defines \gamutStaff, which produces a line with 
-% labeled notes within the gamut of the  Panduri clef, 
+% labeled notes within the gamut of the Panduri clef, 
 % including tuning "hints".
 %
 % If the variable showGamut is true, produces the
