@@ -8,6 +8,8 @@
 % - topLyrics, middleLyrics, bottomLyrics
 %
 
+#(ly:set-option 'relative-includes #t)
+
 % Common settings for all Panduri templates.
 \include "panduri-common.ly"
 
