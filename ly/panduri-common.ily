@@ -3,7 +3,7 @@
 %                     use staff contexts with the 
 %                     Panduri clef
 %
-% Defines \clefPanduri and related settings for scores
+% Defines Panduri clef and related settings for scores
 % using that clef.
 %
 % Also defines \gamutStaff, which produces a line with 
@@ -43,6 +43,13 @@ markAligned =
 
 %
 % Functions for optionally including things.
+%
+
+%
+% optMarkup include text
+%
+% If include is true, produces text as markup;
+% otherwise produces empty markup.
 %
 
 #(define-markup-command 
@@ -122,18 +129,21 @@ optMusic =
 % line *after* the clef is emitted. Not sure why.
 %
 
-clefPanduri = {
-    \override Staff.Clef.stencil   = #ly:text-interface::print
-    \override Staff.Clef.text      = \markup \char ##x10E4
-    \override Staff.Clef.font-name = #"Georgia"
-    \override Staff.Clef.font-size = #7
-    \override Staff.Clef.Y-offset  = #(* -1 (magstep -3))
-    
-    \clef tenor
-    
-    \set Voice.middleCPosition = \middleCPosition
+\layout {
+  \context {
+    \Staff
+    \override Clef.stencil = #ly:text-interface::print
+    \override Clef.text = \markup \char ##x10E4
+    \override Clef.font-name = #"Georgia"
+    \override Clef.font-size = #7
+    \override Clef.Y-offset = #(* -1 (magstep -3))
+  }
+  \context {
+    \Voice
+    middleCPosition = \middleCPosition
+  }
 }
-
+  
 
 %
 % Basic settings for all Panduri clef staff contexts.
@@ -148,9 +158,14 @@ panduriSettings = \with {
   % Makes it OK to use accidentals in music; they will
   % not be displayed. But you don't *have* to use them.
   \remove Accidental_engraver
-  
-  % Use the clef, Luke.
-  \clefPanduri
+
+  % Any clef will do here, since we've overridden the
+  % clef stencil, text, font, and size, and set the 
+  % middle C position.
+  \clef tenor
+
+  % Because a "C" doesn't look nice with the Panduri clef.
+  \numericTimeSignature
 }
 
 
@@ -160,22 +175,19 @@ panduriSettings = \with {
 
 commonSettings = \with {
   \panduriSettings
-
-  % Because a "C" doesn't look nice with the Panduri clef.
-  \numericTimeSignature
   
-  % Unbarred music shows no time signature.
   \optMusic \unbarred { 
+    % Unbarred music shows no time signature 
+    % or bar numbers.
     \omit Staff.TimeSignature 
     \omit Score.BarNumber
+    
+    % Unbarred music has invisible bars.
+    \set Timing.defaultBarType = "" 
   }
 }
 
 commonMusic = {
-  % Unbarred music has invisible bars.
-  \optMusic \unbarred { 
-    \set Timing.defaultBarType = "" 
-  }
 }
 
 
@@ -192,22 +204,23 @@ gamutSettings = \with {
   
   \panduriSettings
   
-  \omit Staff.BarLine
   \omit Staff.TimeSignature
+  \omit Staff.BarLine
 }
 
-gamutGloss = \markup { 
-  \halign #-0.7 {
-    \small \italic 
-    "tuning gamut: all steps ≈ 7/8 EQ step"
-  }
-}
 
 gamutStaff = \score {
   <<
     \new Staff \with \gamutSettings
       \new Voice = "gamut" { 
-        \markAligned #-0.75 \gamutGloss 
+        \markAligned #-0.75 \markup { 
+            \small \italic 
+            "tuning gamut: all steps ≈ 7/8 EQ step"
+        }
+
+        % Turns quarter notes (default duration) into
+        % whole notes, so no durations are needed in 
+        % the definition of gamutMusic.
         \shiftDurations #-2 #0 \gamutMusic
       }
     \new Lyrics \lyricsto "gamut" \gamutText

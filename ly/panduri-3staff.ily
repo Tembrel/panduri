@@ -11,7 +11,7 @@
 #(ly:set-option 'relative-includes #t)
 
 % Common settings for all Panduri templates.
-\include "panduri-common.ly"
+\include "panduri-common.ily"
 
 
 %

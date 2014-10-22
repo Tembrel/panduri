@@ -197,4 +197,4 @@ bassLyrics = \lyricmode {
 % Last thing is to include the template that produces
 % the score.
 %
-\include "../ly/panduri-3staff.ly"
+\include "../ly/panduri-3staff.ily"
