@@ -7,9 +7,14 @@
 % - topLyrics, middleLyrics, bottomLyrics
 %
 
+
+%
+% Include common Panduri template settings, 
+% in the same directory as this template.
+%
+
 #(ly:set-option 'relative-includes #t)
 
-% Common settings for all Panduri templates.
 \include "panduri-common.ily"
 
 
@@ -30,37 +35,24 @@ bassSettings = \with {
 }
 
 
-pieceMarkup = \markup { 
-  \fromproperty #'header:title 
-}
-
 
 \score {
   <<
-    \new Staff \with { \commonSettings \topSettings }
-      \new Voice = "top" { \commonMusic \topMusic }
+    \new Staff \with \topSettings
+      \new Voice = "top" \topMusic
     \new Lyrics \lyricsto "top" \topLyrics
      
-    \new Staff \with { \commonSettings \middleSettings }
-      \new Voice = "middle" { \commonMusic \middleMusic }
+    \new Staff \with \middleSettings
+      \new Voice = "middle" \middleMusic
     \new Lyrics \lyricsto "middle" \middleLyrics
     
-    \new Staff \with { \commonSettings \bassSettings }
-      \new Voice = "bass" { \commonMusic \bassMusic }
+    \new Staff \with \bassSettings
+      \new Voice = "bass" \bassMusic
     \new Lyrics \lyricsto "bass" \bassLyrics
   >>
   
-  % Gamut stuff disabled for now:
-  %\header {
-  %  % Redisplay title after gamut:
-  %  piece = \markup \optMarkup \showGamut \pieceMarkup
-  %}
   
   \layout {
     indent = #0
   }
-
-  \midi {
-    \tempo 4 = 90
-  }  
 }

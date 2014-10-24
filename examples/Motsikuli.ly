@@ -184,6 +184,7 @@ bassLyrics = \lyricmode {
 
 %
 % Last thing is to include the template that produces
-% the score.
+% the score. Optionally precede with gamut include file.
 %
+%\include "../ly/panduri-gamut.ily"
 \include "../ly/panduri-3staff.ily"
