@@ -6,16 +6,10 @@
 % Defines Panduri clef and related settings for scores
 % using that clef.
 %
-% Also defines \gamutStaff, which produces a line with 
-% labeled notes within the gamut of the Panduri clef, 
-% including tuning "hints".
-%
-% If the variable showGamut is true, produces the
-% gamut staff. If variable unbarred is true, omits
+% If variable unbarred is true, omits
 % time signature, bar lines, and bar numbers.
 %
-% Requires unbarred, showGamut, gamutMusic, gamutText, 
-% and middleCPosition to be defined. 
+% Requires unbarred and middleCPosition to be defined. 
 %
 % If header property "engraved" is defined, it will
 % be used in the tagline.
@@ -137,10 +131,7 @@ optMusic =
     \override Clef.font-name = #"Georgia"
     \override Clef.font-size = #7
     \override Clef.Y-offset = #(* -1 (magstep -3))
-  }
-  \context {
-    \Voice
-    middleCPosition = \middleCPosition
+    %\clef tenor
   }
 }
   
@@ -149,7 +140,7 @@ optMusic =
 % Basic settings for all Panduri clef staff contexts.
 %
 
-panduriSettings = \with {
+commonSettings = \with {
   
   % Not sure if this is needed. Might belong in
   % the common settings for individual pieces.
@@ -162,39 +153,50 @@ panduriSettings = \with {
   % Any clef will do here, since we've overridden the
   % clef stencil, text, font, and size, and set the 
   % middle C position.
-  \clef tenor
+  %\clef tenor
+  %\remove Clef_engraver
+  
+  middleCPosition = \middleCPosition
+  middleCClefPosition = \middleCPosition
+  \consists Ambitus_engraver
 
   % Because a "C" doesn't look nice with the Panduri clef.
   \numericTimeSignature
-}
-
-
-%
-% Optionally use unbarred style.
-%
-
-commonSettings = \with {
-  \panduriSettings
   
   \optMusic \unbarred { 
     % Unbarred music shows no time signature 
     % or bar numbers.
     \omit Staff.TimeSignature 
     \omit Score.BarNumber
-    
+  }
+}
+
+
+commonMusic = {
+  \optMusic \unbarred { 
     % Unbarred music has invisible bars.
     \set Timing.defaultBarType = "" 
   }
 }
 
-commonMusic = {
-}
 
-
+%
+% Gamut code is disabled while we look at other approaches.
 %
 % Define gamut score. To insert gamut staff into piece,
 % add \gamutStaff at top level. 
 % 
+
+showGamut = ##f
+
+gamutMusic = \relative c, {
+  d  ef  f  g  a  bf  c  d  e  f  g  a  b  c  d
+}
+
+gamutText = \lyricmode {
+  % inflection characters ♭ ↓ ñ ↑ ♯
+  Dñ E♭↑ F G↓ Añ B♭↑ C D↓ Eñ F↑ G A↓ Bñ C↑ D  
+}
 
 gamutSettings = \with {
   % Slightly smaller staff for gamut. 7/8 ratio is a bit
@@ -202,7 +204,7 @@ gamutSettings = \with {
   % equal-tempered step covered by each step of the gamut.
   \magnifyStaff #7/8
   
-  \panduriSettings
+  \commonSettings
   
   \omit Staff.TimeSignature
   \omit Staff.BarLine
@@ -239,4 +241,4 @@ gamutStaff = \score {
 
 \markup { \vspace #1.2 } 
 
-\optScore \showGamut \gamutStaff
+%\optScore \showGamut \gamutStaff

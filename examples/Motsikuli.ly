@@ -37,18 +37,7 @@
 
 unbarred = ##t
 
-showGamut = ##t
-
-middleCPosition = #(+ 6) % 1st leger line above staff
-
-gamutMusic = \relative c, {
-  d  ef  f  g  a  bf  c  d  e  f  g  a  b  c  d
-}
-
-gamutText = \lyricmode {
-  % inflection characters ♭ ↓ ñ ↑ ♯
-  Dñ E♭↑ F G↓ Añ B♭↑ C D↓ Eñ F↑ G A↓ Bñ C↑ D  
-}
+middleCPosition = #6 % 1st leger line above staff
 
 
 topMusic = \relative c' {      

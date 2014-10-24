@@ -2,8 +2,7 @@
 %
 % Template to be included after defining these variables:
 % - header variables title and (optionally) engraved
-% - boolean variables unbarred, showGamut
-% - gamutMusic, gamutText, middleCPosition
+% - variables unbarred and middleCPosition
 % - topMusic, middleMusic, bottomMusic
 % - topLyrics, middleLyrics, bottomLyrics
 %
@@ -51,10 +50,11 @@ pieceMarkup = \markup {
     \new Lyrics \lyricsto "bass" \bassLyrics
   >>
   
-  \header {
-    % Redisplay title after gamut:
-    piece = \markup \optMarkup \showGamut \pieceMarkup
-  }
+  % Gamut stuff disabled for now:
+  %\header {
+  %  % Redisplay title after gamut:
+  %  piece = \markup \optMarkup \showGamut \pieceMarkup
+  %}
   
   \layout {
     indent = #0
