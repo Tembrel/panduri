@@ -4,7 +4,7 @@
 % WITHOUT use of a separate common file.
 %
 
-\version "2.19.15"
+\version "2.23.4"
 
 \language "english" 
 
@@ -476,10 +476,18 @@ bassLyrics = \lyricmode {
     {
     \fill-line \lower #5 {
     \line \override #'(line-width . 60) { \rounded-box 
-    \small \wordwrap-string #"Here would go lyrics text, possibly in Georgian, like this: სტიუარტჲ"
+    \small \wordwrap-string "Here would go lyrics text, possibly in Georgian, like this: სტიუარტჲ"
     }
     \line \override #'(line-width . 32) { \rounded-box
-    \teeny \wordwrap-string #"Relative note durations are approximate. No subdividing pulse is implied."
+    \teeny \wordwrap-string "Relative note durations are approximate. No subdividing pulse is implied."
     }
   }
 }
+
+
+%{
+convert-ly (GNU LilyPond) 2.23.4  convert-ly: Processing `'...
+Applying conversion: 2.19.16, 2.19.22, 2.19.24, 2.19.28, 2.19.29,
+2.19.32, 2.19.39, 2.19.40, 2.19.46, 2.19.49, 2.20.0, 2.21.0, 2.21.2,
+2.23.1, 2.23.2, 2.23.3, 2.23.4
+%}

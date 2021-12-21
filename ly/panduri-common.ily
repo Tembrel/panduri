@@ -12,12 +12,12 @@
 % If header property "engraved" is defined, it will
 % be used in the tagline.
 %
-\version "2.19.15"
+\version "2.23.4"
 
 
 ifElseString = 
 #(define-scheme-function 
-  (parser location include text alt-text)
+  (include text alt-text)
   (boolean? string? string?)
   (if include
     text
@@ -27,7 +27,7 @@ ifElseString =
 
 optMusic = 
 #(define-music-function 
-  (parser location include music)
+  (include music)
   (boolean? ly:music?)
   (if include
     music
@@ -138,3 +138,11 @@ StaffDefaults = \with {
   }
 }
 
+
+
+%{
+convert-ly (GNU LilyPond) 2.23.4  convert-ly: Processing `'...
+Applying conversion: 2.19.16, 2.19.22, 2.19.24, 2.19.28, 2.19.29,
+2.19.32, 2.19.39, 2.19.40, 2.19.46, 2.19.49, 2.20.0, 2.21.0, 2.21.2,
+2.23.1, 2.23.2, 2.23.3, 2.23.4
+%}
