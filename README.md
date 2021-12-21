@@ -3,7 +3,7 @@
 The traditional vocal and instrumental music of Georgia (*Sakartvelo*)
 employs a tuning system or systems (scales, pitch sets) 
 that &mdash; from a listener's perspective &mdash; are emphatically different from Western ideas of scale and tuning.
-Various theories attempt to capture this difference precisely; see the __Georgian tuning__ section below.
+Various theories attempt to model this difference formally; see the __Georgian tuning__ section below.
 
 Knowledge of Georgian music has been transmitted orally for
 centuries and for the most part has not been written down
