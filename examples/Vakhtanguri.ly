@@ -1,4 +1,4 @@
-\version "2.18.0"
+\version "2.23.4"
 
 \header {
   title = \markup \smallCaps "Vakhtanguri"
@@ -15,8 +15,8 @@
   top-margin = .75 \in
   bottom-margin = .75 \in
   line-width = 7 \in
-  system-system-spacing #'basic-distance = #15
-  markup-system-spacing #'basic-distance = #5
+  system-system-spacing.basic-distance = #15
+  markup-system-spacing.basic-distance = #5
 }
 
 clefPanduri = {
@@ -134,3 +134,11 @@ gamutSettings = \with {
     }  
 
 }
+
+
+%{
+convert-ly (GNU LilyPond) 2.23.4  convert-ly: Processing `'...
+Applying conversion: 2.19.2, 2.19.7, 2.19.11, 2.19.16, 2.19.22,
+2.19.24, 2.19.28, 2.19.29, 2.19.32, 2.19.39, 2.19.40, 2.19.46,
+2.19.49, 2.20.0, 2.21.0, 2.21.2, 2.23.1, 2.23.2, 2.23.3, 2.23.4
+%}
