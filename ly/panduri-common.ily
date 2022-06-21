@@ -4,20 +4,20 @@
 % Defines Panduri clef and related settings for scores
 % using that clef.
 %
-% If \unbarred is true, omits time signature, bar 
+% If \unbarred is true, omits time signature, bar
 % lines, and bar numbers.
 %
-% Requires unbarred and middleCPosition to be defined. 
+% Requires unbarred and middleCPosition to be defined.
 %
 % If header property "engraved" is defined, it will
 % be used in the tagline.
 %
-\version "2.19.15"
+\version "2.23.6"
 
 
-ifElseString = 
-#(define-scheme-function 
-  (parser location include text alt-text)
+ifElseString =
+#(define-scheme-function
+  (include text alt-text)
   (boolean? string? string?)
   (if include
     text
@@ -25,9 +25,9 @@ ifElseString =
   )
 )
 
-optMusic = 
-#(define-music-function 
-  (parser location include music)
+optMusic =
+#(define-music-function
+  (include music)
   (boolean? ly:music?)
   (if include
     music
@@ -37,15 +37,15 @@ optMusic =
 
 
 ScoreDefaults = \with {
-  defaultBarType = \ifElseString \unbarred "" "|"
+  measureBarType = \ifElseString \unbarred "" "|"
 }
-  
+
 StaffDefaults = \with {
 
-  \optMusic \unbarred { 
-    % Unbarred music shows no time signature 
+  \optMusic \unbarred {
+    % Unbarred music shows no time signature
     % or bar numbers.
-    \omit Staff.TimeSignature 
+    \omit Staff.TimeSignature
     \omit Score.BarNumber
   }
   % Note: For some reason bar numbers don't show
@@ -53,18 +53,19 @@ StaffDefaults = \with {
 
   % Makes it OK to use accidentals in music; they will
   % not be displayed. But you don't *have* to use them.
-  
+
   \remove Accidental_engraver
-  
+
   % Add an ambitus at the beginning of each staff.
-  
-  \consists Ambitus_engraver
+
+  % XXX Hide ambitus
+  %\consists Ambitus_engraver
 
   % The Panduri clef itself. It's the Unicode x10E4 ("georgian
   % letter phar") that matters here; the Georgia font in use
   % is for fun. The sizing and Y-offset should scale with the
   % staff size, but we haven't done any serious testing of this.
-  
+
   \override Clef.stencil = #ly:text-interface::print
   \override Clef.text = \markup \char ##x10E4
   \override Clef.font-name = #"Georgia"
@@ -74,13 +75,13 @@ StaffDefaults = \with {
   % Adjust position of middle C. Both properties have
   % to be set for both the music and the ambitus to be
   % properly positioned vertically.
-  
+
   middleCPosition = \middleCPosition
   middleCClefPosition = \middleCPosition
 
   % Because a "C" doesn't look nice with the Panduri clef.
   % Irrelevant but harmless in unbarred scores.
-  
+
   \numericTimeSignature
 }
 
@@ -95,19 +96,19 @@ StaffDefaults = \with {
     \StaffDefaults
   }
 }
-  
+
 
 %
 % Spacing under titles whether or not gamut is displayed.
 %
 
-\markup { \vspace #1.2 } 
+\markup { \vspace #1.2 }
 
 
 %
 % Common paper values for Panduri clef scores.
 %
-% Forces letter size with non-standard margins 
+% Forces letter size with non-standard margins
 % that might not be achievable with all printers.
 %
 
@@ -128,13 +129,21 @@ StaffDefaults = \with {
 
 \header {
   tagline = \markup \small \italic {
-    Engraved 
-    \simple #(strftime 
-              "%Y-%m-%d" 
+    Engraved
+    \simple #(strftime
+              "%Y-%m-%d"
               (localtime (current-time)))
     \fromproperty #'header:engraved
-    with LilyPond 
+    with LilyPond
     \simple #(lilypond-version)
   }
 }
 
+
+
+%{
+convert-ly (GNU LilyPond) 2.23.6  convert-ly: Processing `'...
+Applying conversion: 2.19.16, 2.19.22, 2.19.24, 2.19.28, 2.19.29,
+2.19.32, 2.19.39, 2.19.40, 2.19.46, 2.19.49, 2.20.0, 2.21.0, 2.21.2,
+2.23.1, 2.23.2, 2.23.3, 2.23.4, 2.23.5, 2.23.6
+%}
